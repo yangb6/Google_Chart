@@ -1,0 +1,159 @@
+<!doctype <!DOCTYPE html>
+<html>
+<head>
+	<title>Google Chart</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	    <!--Load the AJAX API-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    	<script type="text/javascript">
+	      google.charts.load('current', {'packages':['corechart']});
+	      google.charts.setOnLoadCallback(drawChart);
+	      function drawChart() {
+	      	/*================================================================================================*/
+	      	/*-----------------------------Chart-1: Watherfall Chart-----------------------------------------*/
+	        var data_1 = google.visualization.arrayToDataTable([
+	        ['Open', 0, 0, 18, 18],
+	        ['Out to Bid', 18, 18, 39, 39],
+	        ['Awaiting Approval', 39, 39, 42, 42],
+	        ['Scheduling', 42, 42, 52, 52],
+	        ['Parts on Order', 52, 52, 54, 54],
+	        ['completed', 54, 54, 70, 70]
+		        // Treat the first row as data.
+	        ], true);
+
+	        var options_1 = {
+	        	title:'Rollout by Stage',
+		        legend: 'none',
+		        bar: { groupWidth: '100%' }, // Remove space between bars.
+		          candlestick: {
+	            fallingColor: { strokeWidth: 0, fill: '#a52714' }, // red
+	            risingColor: { strokeWidth: 0, fill: '#0f9d58' }   // green
+	          }
+	        };
+
+	        var chart_1 = new google.visualization.CandlestickChart(document.getElementById('chart_div_1'));
+	        chart_1.draw(data_1, options_1);
+	        /*================================================================================================*/
+	        /*-----------------------------Chart-3: Pie Chart-----------------------------------------*/
+	                var data_3 = google.visualization.arrayToDataTable([
+			          ['Task', 'Hours per Day'],
+			          ['IN PROGRESS 1',     335],
+			          ['IN PROGRESS 2',      118],
+			          ['IN PROGRESS 3',  21],
+			          ['IN PROGRESS 4', 19],
+			          ['IN PROGRESS 5',    17],
+			          ['INPROGRESS 6',    15],
+			          ['INPROGRESS 7',    13],
+			          ['INPROGRESS 8',    12],
+			          ['INPROGRESS 9',    10],
+			          ['INPROGRESS 10',    10],
+			          ['INPROGRESS 11',    10],
+			          ['INPROGRESS 12',    10],
+			          ['INPROGRESS 13',    10],
+			          ['INPROGRESS 14',    10],
+
+
+			        ]);
+
+			        var options_3 = {
+			          title: 'Total Open By Status'
+			        };
+
+			        var chart_3 = new google.visualization.PieChart(document.getElementById('chart_div_3'));
+
+			        chart_3.draw(data_3, options_3);
+			/*================================================================================================*/
+	        /*-----------------------------Chart-4: Bar Chart-----------------------------------------*/
+		      var data_4 = google.visualization.arrayToDataTable([
+		        ['Progress', 'Total in Progress', 'Total not in Progress', 'Unavailbale',  { role: 'annotation' } ],
+		        ['PEPAIR', 73, 3, 0,  ''],
+		        ['PARENT-BUNDLE', 73, 0, 100,  ''],
+		        ['MAINTENANCE', 27, 36, 0, ''],
+		        ['CAPEX', 14, 0, 91, '']
+		      ]);
+
+		      var options_4 = {
+		      	title: 'Percentof Open Work Orders in Progress by Category',
+
+		        legend: { position: 'top', maxLines: 4 },
+		        bar: { groupWidth: '50%' },
+		        isStacked: true
+		      };
+		      var chart_4 = new google.visualization.BarChart(document.getElementById("chart_div_4"));
+      		  chart_4.draw(data_4, options_4);
+      		
+		     /*================================================================================================*/
+		     /*-----------------------------Chart-5: Line Chart-----------------------------------------*/        
+		     var data_5 = google.visualization.arrayToDataTable([
+		          ['Date', 'Total Calls', 'Total Missed'],
+		          ['11/30/2015',  330,      0],
+		          ['12/14/2015',  300,      0],
+		          ['12/21/2015',  290,       0],
+		          ['12/28/2015',  160,      10],
+		          ['1/04/2015',  450,      60],
+		          ['1/11/2015',  360,      10],
+		          ['1/18/2015',  320,      0],
+		          ['1/25/2015',  500,      0],
+		          ['2/01/2015',  320,      0],
+		          ['2/08/2015',  450,      0],
+		        ]);
+
+		        var options_5 = {
+		          title: 'Number of WOs with Missed ETAs by Week',
+		          legend: { position: 'bottom' }
+		        };
+
+		        var chart_5 = new google.visualization.LineChart(document.getElementById('chart_div_5'));
+
+		        chart_5.draw(data_5, options_5);
+		    /*================================================================================================*/
+		 }
+	    </script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div id= "chart_div_1" style="width: 800px; height: 400px" class="col-lg-3">
+				
+			</div>
+			<div class="col-lg-3">
+				<P >Number on Track</P>
+				<P style = "color:green;font-size:300%;">64</P>
+				<P >Scheduled this week</P>
+				<P style = "color:green;font-size:300%;">24</P>
+			</div>
+			<div class="col-lg-3">
+				<P >Number Past Due</P>
+				<P style = "color:red;font-size:300%;">7</P>
+				<P >Scheduled nex Week</P>
+				<P style = "color:blue;font-size:300%;">26</P>
+			</div>
+		</div>
+
+		<div class="row">
+			<div id= "chart_div_3" style="width: 1300px; height: 400px" class="col-md-3">
+				
+			</div>
+		</div>		
+		<div class="row">
+			<div id= "chart_div_4" style="width: 1300px; height: 400px" class="col-md-3">
+				
+			</div>
+		</div>
+		<div class="row">
+			<div id= "chart_div_5" style="width: 1300px; height: 400px" class="col-md-3">
+				
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>
